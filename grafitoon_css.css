@@ -5,96 +5,223 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grafitoon Ecommerce</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #333;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-        }
+    /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+/* Body and Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        header {
-            background-color:rgb(19, 19, 19);
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .container {
-            padding: 20px;
-        }
-        footer {
-            background: #333;
-            color: white;
-            padding: 10px;
-            margin-top: 20px;
-        }
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Custom Clothing Store</h1>
-        <nav>
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="shop.php">Shop</a></li>
-                <li><a href="cart.php">Cart</a></li>
-                <li><a href="orders.php">Orders</a></li>
-                <li><a href="admin.php">Admin</a></li>
-                <?php if(isset($_SESSION['user'])): ?>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="login.php">Login</a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <h2>Welcome to Our Custom Clothing Store</h2>
-        <p>Browse and buy unique designs just for you.</p>
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 Custom Clothing Store. All rights reserved.</p>
-    </footer>
-</body>
+h1, h2, h3, p {
+    margin: 0 0 15px;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ff6600;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('cartoon-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.hero .btn {
+    background-color: #ff6600;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn:hover {
+    background-color: #cc5200;
+}
+
+/* Product Section */
+.featured-products {
+    padding: 40px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.featured-products h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.product p {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.product .btn {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.product .btn:hover {
+    background-color: #cc5200;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Button Style */
+.btn {
+    background-color: #ff6600;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #cc5200;
+}
+
+/* Cart Section */
+.cart-section {
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.cart-section .product-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-section .product-item img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.cart-section .cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        font-size: 20px;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .product {
+        width: 150px;
+    }
+
+    .products {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+}
+
 </html>
