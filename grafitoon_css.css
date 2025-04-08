@@ -1,0 +1,130 @@
+/* Grafitoon CSS - Urban Cartoon Theme */
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e; /* Dark grey instead of pure black */
+    color: #f0f0f0;
+}
+
+header {
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.grafitoon-logo {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.grafi {
+    color: white;
+}
+
+toon {
+    color: orange;
+}
+
+nav {
+    background-color: #222;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: orange;
+}
+
+.hero {
+    background-image: url('cartoon-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.hero p {
+    font-size: 20px;
+    color: #ffcc80;
+}
+
+/* ✅ Updated translucent features background */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    background-color: rgba(255, 255, 255, 0.45); /* Translucent white */
+    border-radius: 10px;
+    margin: 30px;
+    backdrop-filter: blur(3px); /* Optional: smooth glass effect */
+}
+
+.feature-card {
+    background: #fafafa;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    color: #222;
+}
+
+.feature-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+footer {
+    background-color: #111;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    .feature-card {
+        width: 90%;
+    }
+}
+
+/* Animated GIF Background */
+.background-gif {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/background.GIF') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0.25; /* Adjust this if it's too strong */
+    animation: none; /* Keeps it playing if it's a GIF */
+}
