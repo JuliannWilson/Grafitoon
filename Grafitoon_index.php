@@ -21,7 +21,7 @@
         <a href="#">Home</a>
         <a href="about_us.php">About</a>
         <a href="#">Shop</a>
-        <a href="#">Contact</a>
+        <a href="Grafitoon_contactus.php">Contact</a>
         <a href="Grafitoon_signin.php">Sign In</a>
     </nav>
 
