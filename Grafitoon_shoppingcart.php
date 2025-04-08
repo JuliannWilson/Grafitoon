@@ -1,4 +1,5 @@
 <?php
+include "Database_Connection.php"
     // Start the session
     session_start();
 
