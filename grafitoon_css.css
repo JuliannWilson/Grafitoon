@@ -128,3 +128,33 @@ footer {
     opacity: 0.25; /* Adjust this if it's too strong */
     animation: none; /* Keeps it playing if it's a GIF */
 }
+
+.team-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover animation */
+.team-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(255, 165, 0, 0.4);
+}
+
+/* Team card image and hover animation */
+.team-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(255, 165, 0, 0.4);
+}
