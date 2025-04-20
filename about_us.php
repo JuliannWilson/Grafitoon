@@ -18,8 +18,9 @@
     <nav>
         <a href="grafitoon_index.php">Home</a>
         <a href="about_us.php">About</a>
-        <a href="products.php">Products</a>
-        <a href="contact.php">Contact</a>
+        <a href="Grafitoon_shoppingsection.php">Shop</a>
+        <a href="Grafitoon_contactus.php">Contact</a>
+        <a href="Grafitoon_signin.php">Sign In</a>
     </nav>
 
     <section class="hero">
