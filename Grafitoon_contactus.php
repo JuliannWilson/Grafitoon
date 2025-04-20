@@ -121,14 +121,12 @@ $phone = "(123) 456-7890";
 <header>
         <h1>Grafitoon</h1>
         <nav class="navbar">
-        <div class="logo">
-        <a href="Grafitoon_index.php">Home</a>
-        </div>
+       
         <ul class="nav-links">
             <li><a href="Grafitoon_index.php">Home</a></li>
+            <li><a href="about_us.php">About</a></li>
             <li><a href="Grafitoon_shoppingsection.php">Shop</a></li>
-            <li><a href="Grafitoon_aboutus.php">About</a></li>
-            <li><a href="Grafitoon_contact.php">Contact</a></li>
+            <li><a href="Grafitoon_contactus.php">Contact</a></li>
             <li class="profile">
                 <a href="profile.php">
                     <img src="profile_pics/babe.jpg" alt="Profile" class="profile-pic">
