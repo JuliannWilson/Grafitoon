@@ -10,9 +10,8 @@
     <?php
     $con->select_db($db_name);
     //Insert Data in table
-    fname = "Mary";
-    lname = "Jane";
-    $email = "maryjane@gmail.com";
+    name = "";
+    $email = "";
     $sql = "INSERT INTO users (FirstName, LastName,Email) VALUES ('fname','lname','email')";
     if ($con ->query ($sql) ===true)
     {
