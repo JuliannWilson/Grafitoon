@@ -4,7 +4,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1e1e1e; /* Dark grey instead of pure black */
+    background-color: #1e1e1e;
     color: #f0f0f0;
 }
 
@@ -69,17 +69,15 @@ nav a:hover {
     color: #ffcc80;
 }
 
-/* ✅ Updated translucent features background */
 .features {
     display: flex;
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
     padding: 40px 20px;
-    background-color: rgba(255, 255, 255, 0.45); /* Translucent white */
     border-radius: 10px;
     margin: 30px;
-    backdrop-filter: blur(3px); /* Optional: smooth glass effect */
+    backdrop-filter: blur(3px);
 }
 
 .feature-card {
@@ -115,7 +113,6 @@ footer {
     }
 }
 
-/* Animated GIF Background */
 .background-gif {
     position: fixed;
     top: 0;
@@ -125,26 +122,10 @@ footer {
     background: url('images/background.GIF') no-repeat center center fixed;
     background-size: cover;
     z-index: -1;
-    opacity: 0.25; /* Adjust this if it's too strong */
-    animation: none; /* Keeps it playing if it's a GIF */
+    opacity: 0.25;
+    animation: none;
 }
 
-.team-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover animation */
-.team-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 18px rgba(255, 165, 0, 0.4);
-}
-
-/* Team card image and hover animation */
 .team-card img {
     width: 100%;
     height: 200px;
@@ -157,4 +138,122 @@ footer {
 .team-card:hover {
     transform: scale(1.03);
     box-shadow: 0 6px 18px rgba(255, 165, 0, 0.4);
+}
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.login-card {
+    background: #1c1c1c;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 400px;
+    width: 90%;
+    color: white;
+    box-shadow: 0px 0px 15px rgba(255, 102, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.login-card h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #ff6600;
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-card label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login-card input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #2c2c2c;
+    color: white;
+}
+
+.login-card .btn {
+    background: #ff6600;
+    padding: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.login-card .btn:hover {
+    background: #e55b00;
+}
+
+.cart-container {
+    padding: 40px;
+    color: white;
+    max-width: 1000px;
+    margin: auto;
+    background: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #1c1c1c;
+    color: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.cart-table th, .cart-table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.cart-table img {
+    border-radius: 10px;
+}
+
+.cart-total-row td {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #292929;
+}
+
+.cart-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.btn-secondary {
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #666;
+}
+
+.empty-cart-msg {
+    font-size: 20px;
+    margin: 30px 0;
 }
