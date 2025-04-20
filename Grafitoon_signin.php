@@ -1,73 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        header {
-            background-color:rgb(19, 19, 19);
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .container {
-            padding: 20px;
-        }
-        .hero {
-            background-image: url('cartoon-banner.jpg');
-            background-size: cover;
-            color: white;
-            padding: 50px;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .products {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .product {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-            max-width: 200px;
-        }
-        .product img {
-            max-width: 100%;
-            border-radius: 10px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #ff6600;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        footer {
-            background: #333;
-            color: white;
-            padding: 10px;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-    
-</body>
-</html><?php
-// Include configuration file
+<?php
+session_start(); // Add this to manage sessions
+
+// Include configuration file for database connection
 require_once 'configuration.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -75,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
 
     if (!empty($email) && !empty($password)) {
-        // Prepare SQL statement
         $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -84,12 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->num_rows > 0) {
             $stmt->bind_result($user_id, $hashed_password);
             $stmt->fetch();
-            
-            // Verify password
+
             if (password_verify($password, $hashed_password)) {
+                $_SESSION['user'] = $email; // Store user email in session
                 $_SESSION['user_id'] = $user_id;
-                $_SESSION['email'] = $email;
-                header("Location: dashboard.php");
+                header("Location: Grafitoon_index.php");
                 exit();
             } else {
                 $error = "Invalid email or password.";
@@ -103,29 +35,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Cartoon Clothing</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sign In - Grafitoon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4a4a4a;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #131313;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .signin-container {
+            margin: 50px auto;
+            padding: 20px;
+            background: #2b2b2b;
+            width: 300px;
+            border-radius: 10px;
+        }
+        .signin-container input, .signin-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .signin-container input {
+            background: #f9f9f9;
+            color: #000;
+        }
+        .signin-container button {
+            background-color: #ff6600;
+            color: white;
+            cursor: pointer;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        a {
+            color: #ff6600;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
+    <header>Grafitoon - Sign In</header>
     <div class="signin-container">
         <h2>Sign In</h2>
         <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
-        <form action="signin.php" method="POST">
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-            
+        <form method="POST" action="">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Sign In</button>
         </form>
-        <p>Don't have an account? <a href="signup.php">Sign Up</a></p>
+        <p>Don't have an account? <a href="Grafitoon_signup.php">Sign Up</a></p>
     </div>
 </body>
 </html>
