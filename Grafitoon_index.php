@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grafitoon - Home</title>
     <link rel="stylesheet" href="grafitoon_css.css">
+    <style>
+        .features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    background-color: rgba(255, 255, 255, 0.45); /* Translucent white */
+    border-radius: 10px;
+    margin: 30px;
+    backdrop-filter: blur(3px); /* Optional: smooth glass effect */
+}
+    </style>
 </head>
 <body>
 
@@ -17,12 +30,16 @@
         </div>
     </header>
 
+    
     <nav>
-        <a href="#">Home</a>
+        <a href="grafitoon_index.php">Home</a>
         <a href="about_us.php">About</a>
-        <a href="#">Shop</a>
+        <a href="Grafitoon_shoppingsection.php">Shop</a>
         <a href="Grafitoon_contactus.php">Contact</a>
-        <a href="Grafitoon_signin.php">Sign In</a>
+        <a href="Grafitoon_shoppingcart.php">Cart</a>
+        <a href="grafitoon_checkout.php">Checkout</a>
+        <a href="Grafitoon_ordershistory.php">Orders</a>
+        <a href="Grafitoon_login.php">Login</a>
     </nav>
 
     <section class="hero">
