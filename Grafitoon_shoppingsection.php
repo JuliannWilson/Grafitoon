@@ -1,25 +1,4 @@
 <?php
-include "Database_Connection.php";
-// Example query to fetch product data from the Grafitoon database
-$sql = "SELECT * FROM products"; // Replace with your products table name
-$result = $conn->query($sql);
-
-// Display the products on the page
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<div class='product'>";
-        echo "<img src='" . $row['image'] . "' alt='" . $row['name'] . "'>";
-        echo "<p>" . $row['name'] . " - $" . $row['price'] . "</p>";
-echo "<a href='Grafitoon_shoppingcart.php?product=" . urlencode($row['name']) . "&price=" . urlencode($row['price']) . "' class='btn'>Add to Cart</a>";
-        echo "</div>";
-    }
-} else {
-    echo "No products found!";
-}
-
-// Close the connection
-$conn->close();
-
     // Start the session
     session_start();
 ?>
@@ -93,43 +72,47 @@ $conn->close();
             border-radius: 5px;
         }
         footer {
-            background: #333;
-            color: white;
-            padding: 10px;
-            margin-top: 20px;
-        }
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
     </style>
 </head>
 <body>
-    <header>
-        Grafitoon
+<div class="background-gif"></div>
+<header>
+        <div class="logo">
+            <span class="grafi">Grafi</span><span class="toon">toon</span>
+        </div>
     </header>
     <nav>
-            <ul>
-                <li><a href="Grafitoon_index.php">Home</a></li>
-                <li><a href="Grafitoon_shoppingsection.php">Shop</a></li>
-                <li><a href="Grafitoon_contactus.php">Contact</a></li>
-                <li><a href="Grafitoon_shoppingcart.php">Cart</a></li>
-                <li><a href="orders.php">Orders</a></li>
-                <li><a href="admin.php">Admin</a></li>
+       <a href="Grafitoon_index.php">Home</a>
+        <a href="Grafitoon_shoppingsection.php">Shop</a>
+        <a href="Grafitoon_contactus.php">Contact</a>
+        <a href="Grafitoon_shoppingcart.php">Cart</a>
+         <a href="Grafitoon_ordershistory.php">Orders</a>
+         <a href="admin.php">Admin</a>
                 <?php if(isset($_SESSION['user'])): ?>
-                    <li><a href="logout.php">Logout</a></li>
+                    <a href="logout.php">Logout</a>
                 <?php else: ?>
-                    <li><a href="Grafitoon_login.php">Login</a></li>
+                    <a href="Grafitoon_login.php">Login</a>
                 <?php endif; ?>
-            </ul>
         </nav>
 
-    <div class="container">
+    <section class="container">
         <h2>Shop Our Cartoon Collection</h2>
-        <div class="products">
+        <section class="products">
             <?php
                 $products = [
-                    ["img" => "tshirt1.jpg", "name" => "Cartoon Tee", "price" => "$20"],
-                    ["img" => "hoodie1.jpg", "name" => "Cartoon Hoodie", "price" => "$35"],
-                    ["img" => "cap1.jpg", "name" => "Cartoon Cap", "price" => "$15"],
-                    ["img" => "sweater1.jpg", "name" => "Cartoon Sweater", "price" => "$30"],
-                    ["img" => "jacket1.jpg", "name" => "Cartoon Jacket", "price" => "$50"]
+                    ["img" => "images\product1.jpg", "name" => "Cartoon Tee", "price" => "$20"],
+                    ["img" => "images\product2.jpg", "name" => "Cartoon Hoodie", "price" => "$35"],
+                    ["img" => "images\product3.jpg", "name" => "Cartoon Cap", "price" => "$15"],
+                    ["img" => "images\product4.jpg", "name" => "Cartoon Sweater", "price" => "$30"],
+                    ["img" => "images\product5.png", "name" => "Cartoon Jacket", "price" => "$50"]
                 ];
                 
                 foreach ($products as $product) {
