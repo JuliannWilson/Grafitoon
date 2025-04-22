@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once 'Database_Connection.php'; // Make sure this file sets up $conn
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -169,30 +170,33 @@ function confirmLogout() {
 
     <div class="filter-buttons">
         <button class="active" onclick="filterProducts('all', event)">All</button>
-        <button onclick="filterProducts('tee', event)">Tees</button>
-        <button onclick="filterProducts('hoodie', event)">Hoodies</button>
-        <button onclick="filterProducts('cap', event)">Caps</button>
-        <button onclick="filterProducts('sweater', event)">Sweaters</button>
-        <button onclick="filterProducts('jacket', event)">Jackets</button>
+        <button onclick="filterProducts('t-shirts', event)">T-Shirts</button>
+        <button onclick="filterProducts('hoodies', event)">Hoodies</button>
+        <button onclick="filterProducts('pants', event)">Pants</button>
+        <button onclick="filterProducts('accessories', event)">Accessories</button>
     </div>
 
     <div class="products" id="productList">
         <?php
-        $products = [
-            ["img" => "images/product1.jpg", "name" => "Cartoon Tee", "price" => "$20", "type" => "tee"],
-            ["img" => "images/product2.jpg", "name" => "Cartoon Hoodie", "price" => "$35", "type" => "hoodie"],
-            ["img" => "images/product3.jpg", "name" => "Cartoon Cap", "price" => "$15", "type" => "cap"],
-            ["img" => "images/product4.jpg", "name" => "Cartoon Sweater", "price" => "$30", "type" => "sweater"],
-            ["img" => "images/product5.png", "name" => "Cartoon Jacket", "price" => "$50", "type" => "jacket"]
-        ];
+        $query = "SELECT * FROM products";
+        $result = $conn->query($query);
 
-        foreach ($products as $product) {
-            echo "<div class='product' data-type='{$product['type']}'>";
-            echo "<img src='{$product['img']}' alt='{$product['name']}'>";
-            echo "<p>{$product['name']}</p>";
-            echo "<p>{$product['price']}</p>";
-            echo "<a href='Grafitoon_shoppingcart.php?product=" . urlencode($product['name']) . "&price=" . urlencode($product['price']) . "' class='btn'>Add to Cart</a>";
-            echo "</div>";
+        if ($result && $result->num_rows > 0) {
+            while ($product = $result->fetch_assoc()) {
+                $img = htmlspecialchars($product['image_path']);
+                $name = htmlspecialchars($product['NAME']);
+                $price = htmlspecialchars($product['price']);
+                $category = strtolower($product['category']); // used as data-type for filtering
+
+                echo "<div class='product' data-type='{$category}'>";
+                echo "<img src='{$img}' alt='{$name}'>";
+                echo "<p>{$name}</p>";
+                echo "<p>\${$price}</p>";
+                echo "<a href='Grafitoon_shoppingcart.php?product=" . urlencode($name) . "&price=" . urlencode($price) . "' class='btn'>Add to Cart</a>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>No products found.</p>";
         }
         ?>
     </div>
