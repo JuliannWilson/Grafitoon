@@ -220,8 +220,10 @@ session_start();
             <div class="profile-dropdown-content">
                 <a href="Grafitoon_profile.php"><i class="fas fa-user"></i> My Profile</a>
                 <a href="grafitoon_checkout.php"><i class="fas fa-credit-card"></i> Checkout</a>
-                <a href="Grafitoon_orders.php"><i class="fas fa-box"></i> Orders</a>
                 <a href="Grafitoon_ordershistory.php"><i class="fas fa-history"></i> Order History</a>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <a href="Grafitoon_admin.php"><i class="fas fa-tools fa-fw"></i> Admin Dashboard</a>
+                <?php endif; ?>
                 <a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
             </div>
         </div>
