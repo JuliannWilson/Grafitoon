@@ -18,10 +18,16 @@ $upload_dir_ok = false; // Flag for directory status
 
 // Check upload directory
 if (!is_dir($upload_dir)) {
-    if (!mkdir($upload_dir, 0775, true)) { $errors[] = "Error: Upload directory ('{$upload_dir}') setup failed."; } else { $upload_dir_ok = true; }
-} elseif (!is_writable($upload_dir)) { $errors[] = "Error: Upload directory ('{$upload_dir}') is not writable."; }
-else { $upload_dir_ok = true; }
-
+    if (!mkdir($upload_dir, 0775, true)) {
+        $errors[] = "Error: Upload directory ('{$upload_dir}') setup failed.";
+    } else {
+        $upload_dir_ok = true;
+    }
+} elseif (!is_writable($upload_dir)) {
+    $errors[] = "Error: Upload directory ('{$upload_dir}') is not writable.";
+} else {
+    $upload_dir_ok = true;
+}
 
 // --- Handle Form Submission ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -47,19 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors) && $upload_dir_ok) {
          if (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_OK) {
             $file = $_FILES['product_image'];
-            // ... (file type, size validation as before) ...
-             if (!in_array($file['type'], ['image/jpeg', 'image/png', 'image/gif', 'image/webp'])) { $errors[] = "Invalid file type."; }
-             elseif ($file['size'] > 5 * 1024 * 1024) { $errors[] = "File size exceeds 5MB limit."; }
-             else { // Validation passed
+
+            // Validate file type and size
+             if (!in_array($file['type'], ['image/jpeg', 'image/png', 'image/gif', 'image/webp'])) {
+                 $errors[] = "Invalid file type.";
+             } elseif ($file['size'] > 5 * 1024 * 1024) { // Max 5MB
+                 $errors[] = "File size exceeds 5MB limit.";
+             } else { // Validation passed
                 $file_extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
                 $safe_filename_base = preg_replace('/[^a-zA-Z0-9_-]/', '_', pathinfo($file['name'], PATHINFO_FILENAME));
-                if(empty($safe_filename_base)) $safe_filename_base = 'product_image';
+                if (empty($safe_filename_base)) $safe_filename_base = 'product_image';
                 $unique_filename = $safe_filename_base . "_" . uniqid() . "." . $file_extension;
                 $target_path = $upload_dir . $unique_filename;
 
                 if (move_uploaded_file($file['tmp_name'], $target_path)) {
                     $new_image_path = $target_path; // Assign path ONLY on success
-                } else { $errors[] = "Failed to move uploaded file."; }
+                } else {
+                    $errors[] = "Failed to move uploaded file.";
+                }
             }
         } elseif (isset($_FILES['product_image']) && $_FILES['product_image']['error'] === UPLOAD_ERR_NO_FILE) {
             $errors[] = "Product image is required."; // Still required for create
@@ -75,9 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // --- Database Insertion (Only if NO errors and image path is set) ---
     if (empty($errors) && $conn && $new_image_path !== null) {
-
-        // *** DEBUGGING: Check category value just before binding ***
-        // var_dump($category); exit(); // Uncomment this line temporarily to see the exact value
 
         $sql_insert = "INSERT INTO products (NAME, description, price, size_options, category, stock_quantity, image_path, created_at)
                        VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
@@ -110,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($conn) $conn->close();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
