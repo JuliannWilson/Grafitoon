@@ -1,168 +1,207 @@
 <?php
-$page_title = "Contact Us - ToonThreads";
-$company_name = "ToonThreads";
+session_start();
+$page_title = "Contact Us - Grafitoon";
+$company_name = "Grafitoon";
 $address = "123 Cartoon Lane, ToonTown, TX 75001";
-$email = "support@toonthreads.com";
+$email = "support@grafitoon.com";
 $phone = "(123) 456-7890";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $page_title; ?></title>
-    <style>
-      body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #4a4a4a;
-            text-align: center;
-        }
-        header {
-            background-color:rgb(19, 19, 19);
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .navbar {
-            background-color:rgb(19, 19, 19);
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><?php echo $page_title; ?></title>
+  <link rel="stylesheet" href="grafitoon_css.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: Arial, sans-serif;
+      position: relative;
+      color: black;
+    }
 
-        .navbar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .navbar ul li {
-            display: inline;
-        }
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            padding: 10px 15px;
-            display: inline-block;
-        }
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: grey;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 5px 5px 15px rgba(19, 19, 19);
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .contact-info {
-            flex: 1;
-            text-align: left;
-            padding-right: 20px;
-        }
-        .map {
-            flex: 1;
-        }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+      color: black;
+    }
 
-        .profile-pic {
-    width: 40px; /* Adjust size as needed */
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover; /* Ensures image maintains aspect ratio */
-    border: 2px solid #fff; /* Optional: Adds a border around the image */
-}
+    .background-gif {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('images/background.GIF') no-repeat center center / cover;
+      z-index: -1;
+      opacity: 0.2;
+    }
 
-        .hero {
-            background-image: url('cartoon-banner.jpg');
-            background-size: cover;
-            color: white;
-            padding: 50px;
-            font-size: 28px;
-            font-weight: bold;
-        }
-    
-        iframe {
-            width: 100%;
-            height: 300px;
-            border: 0;
-            border-radius: 10px;
-        }
-        h1, h2 {
-            color:rgb(0, 0, 0);
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #ff6600;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        footer {
-            background: #333;
-            color: white;
-            padding: 10px;
-            margin-top: 20px;
-        }
-    
-    </style>
+    main {
+      flex: 1;
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .contact-container h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: black;
+    }
+
+    .contact-container p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      color: black;
+    }
+
+    .contact-container a {
+      color: #ff6600;
+      text-decoration: none;
+    }
+
+    .profile-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+    }
+
+    .profile-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .profile-dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      right: 0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .profile-dropdown-content a {
+      color: black;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .profile-dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .profile-dropdown:hover .profile-dropdown-content {
+      display: block;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      width: 100%;
+    }
+  </style>
 </head>
+<body>
+
+<div class="background-gif"></div>
+
+<?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']): ?>
+  <div id="welcome-popup" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff6600;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+  ">
+    Signed in successfully, welcome back <?= htmlspecialchars($_SESSION['username']) ?>!
+  </div>
+  <script>
+    setTimeout(() => {
+      document.getElementById('welcome-popup').style.display = 'none';
+    }, 5000);
+  </script>
+  <?php unset($_SESSION['login_success']); ?>
+<?php endif; ?>
 
 <header>
-        <h1>Grafitoon</h1>
-        <nav class="navbar">
-        <div class="logo">
-        <a href="Grafitoon_index.php">Home</a>
-        </div>
-        <ul class="nav-links">
-            <li><a href="Grafitoon_index.php">Home</a></li>
-            <li><a href="Grafitoon_shoppingsection.php">Shop</a></li>
-            <li><a href="Grafitoon_aboutus.php">About</a></li>
-            <li><a href="Grafitoon_contact.php">Contact</a></li>
-            <li class="profile">
-                <a href="profile.php">
-                    <img src="profile_pics/babe.jpg" alt="Profile" class="profile-pic">
-                </a>
-            </li>
-        </ul>
-    </nav>
+  <div class="logo">
+    <span class="grafi">Grafi</span><span class="toon">toon</span>
+  </div>
+</header>
 
-    </header>
-<body>
-    <div class="container">
-        <div class="contact-info">
-            <h1>Contact Grafitoon </h1>
-            <p><strong>Address:</strong> 12 Fun Lane
-Kingston 5, St Andrew</p>
-            <p><strong>Email:</strong>grafitoonclothing@gmail.com</a></p>
-            <p><strong>Phone:</strong> 1 (876) 435-2353</p>
-            <div class="suggestion_box">
-               
-  <form action="/action_page.php">
-  <label for="subject"></label>
-    <textarea id="" name="subject" placeholder="Send us your suggestions/ queries." style="height:200px"></textarea>
+<nav>
+  <a href="grafitoon_index.php">Home</a>
+  <a href="about_us.php">About</a>
+  <a href="Grafitoon_shoppingsection.php">Shop</a>
+  <a href="Grafitoon_contactus.php">Contact</a>
+  <a href="Grafitoon_shoppingcart.php"><i class="fas fa-shopping-cart"></i></a>
+  <?php if (isset($_SESSION['user_id'])): ?>
+    <div class="profile-dropdown">
+      <img src="<?= htmlspecialchars($_SESSION['profile_picture'] ?? 'images/placeholders/default_profile.png') ?>" alt="Profile" class="profile-avatar">
+      <div class="profile-dropdown-content">
+        <a href="Grafitoon_profile.php"><i class="fas fa-user"></i> My Profile</a>
+        <a href="grafitoon_checkout.php"><i class="fas fa-credit-card"></i> Checkout</a>
+        <a href="Grafitoon_ordershistory.php"><i class="fas fa-history"></i> Order History</a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <a href="Grafitoon_admin.php"><i class="fas fa-tools fa-fw"></i> Admin Dashboard</a>
+                <?php endif; ?>
+        <a href="#" onclick="confirmLogout()"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+      </div>
+    </div>
+  <?php else: ?>
+    <a href="Grafitoon_login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
+  <?php endif; ?>
+</nav>
 
-    <input type="submit" value="Submit">
-    </div>
-         
-        </div>
-  
-        <div style="margin-top: 30px;">
-    <h3>Scan to Visit Our Homepage</h3>
-    <a href="Grafitoon_index.php">
-    <img src="QR_code.png" alt="QR_code.png" width="250" />
-    </a>
-</div>
-    </div>
+<script>
+function confirmLogout() {
+  if (confirm("Are you sure you want to sign out?")) {
+    window.location.href = "logout.php";
+  }
+}
+</script>
+
+<main>
+  <section class="contact-container">
+    <h1>Contact <?php echo $company_name; ?></h1>
+    <p><strong>Address:</strong> <?php echo $address; ?></p>
+    <p><strong>Email:</strong> <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
+    <p><strong>Phone:</strong> <?php echo $phone; ?></p>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Grafitoon. All rights reserved.
+</footer>
+
 </body>
 </html>
